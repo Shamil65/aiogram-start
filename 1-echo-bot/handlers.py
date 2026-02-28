@@ -1,7 +1,7 @@
 from aiogram import F, Router
 from aiogram.types import Message
 from aiogram.filters import CommandStart, Command
-
+import keyboards as kb
 
 user = Router()
 
@@ -12,7 +12,8 @@ user = Router()
 # и он будет отбрабатыватиь все сообщения
 @user.message(CommandStart())
 async def cmd_start(message: Message):
-    await message.answer('Добро пожаловать в бот!')
+    await message.answer('Добро пожаловать в бот!',
+                         reply_markup=kb.menu)
 
 
 @user.message(Command('help'))
@@ -26,16 +27,10 @@ async def cmd_photo(message: Message):
     await message.answer_photo(photo=message.photo[-2].file_id)
 
 
-@user.message(F.sticker)
-async def cmd_photo(message: Message):
-    await message.answer(f'Вы скинули стикер\n\nЕго id: {message.sticker.file_id}')
-    await message.answer_sticker(sticker=message.sticker.file_id)
-
-
-
-@user.message(F.text == 'Привет')
+@user.message(F.text == 'Каталог')
 async def cmd_hello(message: Message):
-    await message.answer("Приветик молодой мальчик")
+    await message.answer("Приветик молодой мальчик",
+                         reply_markup=kb.catalog)
 
 
 @user.message() # обрабатываем все сообщения
