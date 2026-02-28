@@ -12,8 +12,16 @@ menu = ReplyKeyboardMarkup(
 
 catalog = InlineKeyboardMarkup(
     inline_keyboard=[
-        [InlineKeyboardButton(text='Nike', url='https://translate.yandex.ru/')],
-        [InlineKeyboardButton(text='Adidas', url='https://translate.yandex.ru/')],
-        [InlineKeyboardButton(text='Reebok', url='https://translate.yandex.ru/')],
+        [InlineKeyboardButton(text='Nike', callback_data='brand_nike')],
+        [InlineKeyboardButton(text='Adidas', callback_data='brand_adidas')],
+        [InlineKeyboardButton(text='Reebok', callback_data='brand_reebok')],
+    ]
+)
+
+
+get_number = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text='ОТправить номер', 
+                        request_contact=True)]
     ]
 )
