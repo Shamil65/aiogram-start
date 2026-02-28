@@ -29,7 +29,8 @@
 
 
 ## Пример работы с файлами
-```
+
+```python
 @dp.message(F.sticker)
 async def cmd_photo(message: Message):
     await message.answer(f'Вы скинули стикер\n\nЕго id: {message.sticker.file_id}')
