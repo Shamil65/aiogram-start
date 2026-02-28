@@ -31,6 +31,17 @@ async def cmd_photo(message: Message):
     await message.answer_photo(photo=message.photo[-2].file_id)
 
 
+@dp.message(F.sticker)
+async def cmd_photo(message: Message):
+    await message.answer(f'Вы скинули стикер\n\nЕго id: {message.sticker.file_id}')
+    await message.answer_sticker(sticker=message.sticker.file_id)
+
+
+
+@dp.message(F.text == 'Привет')
+async def cmd_hello(message: Message):
+    await message.answer("Приветик молодой мальчик")
+
 
 @dp.message() # обрабатываем все сообщения
 async def echo(message: Message):   # импортируем типы сообщений
