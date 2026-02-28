@@ -1,6 +1,9 @@
-from aiogram.types import (ReplyKeyboardMarkup, KeyboardButton, 
-                          InlineKeyboardMarkup, InlineKeyboardButton)
+from aiogram.types import (
+    ReplyKeyboardMarkup, KeyboardButton,
+    InlineKeyboardMarkup, InlineKeyboardButton
+)
 
+# Главное меню
 menu = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text='Каталог')],
@@ -10,6 +13,7 @@ menu = ReplyKeyboardMarkup(
     input_field_placeholder='Выберите пункт меню'
 )
 
+# Inline кнопки для каталога брендов
 catalog = InlineKeyboardMarkup(
     inline_keyboard=[
         [InlineKeyboardButton(text='Nike', callback_data='brand_nike')],
@@ -18,10 +22,9 @@ catalog = InlineKeyboardMarkup(
     ]
 )
 
-
+# Кнопка для отправки контакта
 get_number = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text='ОТправить номер', 
-                        request_contact=True)]
+        [KeyboardButton(text='Отправить номер', request_contact=True)]
     ]
 )

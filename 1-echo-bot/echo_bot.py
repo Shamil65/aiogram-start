@@ -3,18 +3,24 @@ from dotenv import load_dotenv
 import os
 from handlers import user
 
-
-load_dotenv()              # Обработка updates/управляет входящими и исходящими сообщениями
+# Загружаем токен из .env
+load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 async def main():
-    bot = Bot(token=BOT_TOKEN)      # Подкоючение к нашему боту
-    dp = Dispatcher()  
+    # Подключаемся к боту
+    bot = Bot(token=BOT_TOKEN)
+    
+    # Создаем диспетчер
+    dp = Dispatcher()
+    
+    # Подключаем обработчики из routers
     dp.include_router(user)
-    await dp.start_polling(bot)     # Обращение к polling/ будет постоянно посылать запрос 
-                                    # в телеграм и справшивать, а пришло ли какое то обновление
+    
+    # Запуск polling: бот постоянно проверяет новые сообщения
+    await dp.start_polling(bot)
 
-
+# Точка входа
 if __name__ == "__main__":
     try:
         import asyncio
